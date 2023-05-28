@@ -1,20 +1,295 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+<ion-title>Galeria de Fotos</ion-title>
+<ion-header *ngIf="mostrarCarousel">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div style=" justify-content: flex-end; align-items: flex-end; margin-left: 90%">
+    <ion-icon name="close" style="align-items: flex-end; z-index: 100000; font-size: 50px; color: #ff0000" (click)="closeCarousel()"></ion-icon>
+    <ion-icon name="expand-outline" style="align-items: flex-end; z-index: 99999; font-size: 50px; color: #fff" (click)="toggleFullScreen()"></ion-icon>
+    <ion-icon name="add-circle-outline" style="align-items: flex-end; z-index: 99999; font-size: 50px; " (click)="zoomIn()"></ion-icon>
   </div>
-</ion-content>
+</ion-header>
+  <ion-header class="header-header">  
+  
+    <div [routerLink]="['/login']">
+      <ion-icon class="login-icon" style="color:#fff;" name="person"></ion-icon>
+      <ion-label class="login-label" style="color:#fff;" class="label-header" >LOGIN</ion-label>
+    </div>
+      |
+      <div style="padding-left: 18px;" [routerLink]="['/signup']">
+        <ion-icon class="signup-icon" style="color:#fff;" name="pencil"></ion-icon>
+        <ion-label class="signup-label"  style="color: #fff; padding-left: 10px;" >CADASTRE-SE</ion-label>
+      </div>
+      
+      
+    
+    </ion-header>
+
+
+
+    <ion-header class="header hide-header">
+      
+      
+        <ion-img  [routerLink]="['/onboarding']"  style="max-width: 170px; min-width: 170px; padding-right: 60px;" src="../../../assets/assets/images-coopeere/coopere.png"></ion-img>
+      
+  
+      
+      <ion-button fill="clear" style="color:#000;"  [routerLink]="['/']" routerLinkActive="active-link">Home</ion-button>
+      
+      <div class="dropdown">
+        <a [routerLink]="['/onboarding']" style="color:#000;" routerLinkActive="active-link">A COOPEERE <svg class="arrowicon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z"/></svg></a>
+        <div class="dropdown-content">
+          <a [routerLink]="['/quemsomos']" class="dropdown-item">Quem Somos?</a>
+          <a [routerLink]="['/objetivos']" class="dropdown-item">Objetivo</a>
+          <a [routerLink]="['/equipe']" class="dropdown-item">A Equipe</a>
+        </div>
+      </div>
+    
+      <ion-button fill="clear" style="color:#000;"  [routerLink]="['/estatuto']" routerLinkActive="active-link">Estatuto</ion-button>
+      <ion-button fill="clear" style="color:#000;"  [routerLink]="['/legislacao']" routerLinkActive="active-link">Legislação</ion-button>
+      <ion-button fill="clear" style="color:#000;" [routerLink]="['/vantagens']" routerLinkActive="active-link">Vantagens</ion-button>
+      <ion-button fill="clear" style="color:#000;"  [routerLink]="['/parceiros']" routerLinkActive="active-link">Parceiros</ion-button>
+      <ion-button fill="clear" style="color:#000;" [routerLink]="['/faleconosco']" routerLinkActive="active-link">Fale Conosco</ion-button>
+
+      
+
+      <div>
+        <a href="#modal_1" class="btn2">
+          <ion-icon style="font-size: 25px; font-weight: bold;" name="search"></ion-icon></a>
+
+        <!--<div class="sidebar-bottom">
+            <div class="color-box dark"></div>
+            <div class="color-box night"></div>
+            <div class="color-box light"></div>
+        </div>-->
+    </div>
+
+     <!--pop-up-->
+
+
+
+        <div id="modal_1" class="modal">
+
+
+
+            <div class="modalcontent">
+
+              <form class="modalSearch" (ngSubmit)="enviarFormulario()" >
+                <input id="lista"  placeholder="Procurar..." type="hidden" 
+                
+                  style ="background-color: transparent; 
+                          text-align:center; 
+                          border:none; 
+                          font-size:45px; 
+                          margin-top: -150px; 
+                          margin-left: -500px;" 
+                          
+                          type="text"
+                          
+                          (ngModel)="pesquisaPagina"
+                         
+                          >
+
+<!--  [(ngModel)]="pesquisaPagina" -->
+               <ion-icon name="close" style="color: #fff; font-size: 30px; align-items: end; justify-content: center; margin-right: -500px; margin-bottom: 150px;" (click)="closeSearchInput()"></ion-icon>
+             </form>
+
+
+
+
+
+
+
+                    <p class="modaldescription">
+
+
+
+            </div>
+
+
+
+
+          </div>
+
+
+  
+    </ion-header>
+
+
+
+
+  <div class="minimum-header">
+
+      
+    <ion-img class="logo-min-header" [routerLink]="['/onboarding']"  src="../../../assets/assets/images-coopeere/coopere.png"></ion-img>
+
+   
+    
+
+    <!-- TESTANDO O MENU HAMBURGUER COM DROPDOWN -->
+<div class="menu-min-header">
+    <nav class="thenav">
+      <div class="hamburger-menu-X" (click)="toggleMenu()">
+        <div class="bar-X"></div>
+        <div class="bar-X"></div>
+        <div class="bar-X"></div>
+      </div>
+      <ul class="menu-items-X" *ngIf="showMenu">
+        <br>
+        <li><a [routerLink]="['/onboarding']" routerLinkActive="active-link">HOME</a></li>
+        <li><a href="#">A COOPEERE</a></li>
+        <li><a [routerLink]="['/estatuto']" routerLinkActive="active-link">ESTATUTO</a></li>
+        <li><a [routerLink]="['/legislacao']" routerLinkActive="active-link">LEGISLAÇÃO</a></li>
+        <li><a [routerLink]="['/vantagens']" routerLinkActive="active-link">VANTAGENS</a></li>
+        <li><a [routerLink]="['/parceiros']" routerLinkActive="active-link">PARCEIROS</a></li>
+        <li><a [routerLink]="['/faleconosco']" routerLinkActive="active-link">FALE CONOSCO</a></li>
+        
+
+        
+      </ul>
+    </nav>
+  </div>   
+
+  <!-- 
+    
+    PACK DE CLASSES EM COMUM EM TODAS AS PAGINAS
+
+    * menu-items-X
+    * minimum-header
+    * menu-min-header
+    * thenav
+    * hamburger-menu-X
+    * bar-X
+  
+  -->
+    
+    <!-- FIM DO TESTE DO MENU HAMBURRGUER COM DROPDOWN -->
+
+
+    <a href="#modal_1" class="btn2">  <ion-icon name="search" style="color: #000; margin-right: -50px;"  class="search-min-header">Procurar</ion-icon></a>
+  </div>
+
+  <!-- <a href="#modal_1" class="btn2"><ion-icon style="font-size: 25px; font-weight: bold;" name="search"></ion-icon></a> -->
+
+
+      
+    <div class="container">
+
+          <section class="section">
+  
+            <h1 class="title">Galeria de Fotos</h1>
+  
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20191109-WA0302.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20171009-WA0004.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20171009-WA0005.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20171010-WA0022.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20171010-WA0026.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20171019-WA0008.jpg" (click)="showCarousel()">
+              <img src="https://www.coopeere.eco.br/wp-content/uploads/2020/10/FB_IMG_1522538580786-300x225.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20171021-WA0002.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20171021-WA0002.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20171023-WA0024.jpg" (click)="showCarousel()">
+             
+            
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20171113-WA0015.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20171123-WA0001.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20171127-WA0004.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20171127-WA0054.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20171128-WA0003.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20171128-WA0005.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20171128-WA0006.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20180505-WA0001.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20180608-WA0006.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20181203-WA0046.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20181203-WA0093.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20181203-WA0128.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20181204-WA0070.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20181204-WA0072.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20190318-WA0065.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20190626-WA0043.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20190722-WA0061.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20190722-WA0073.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20191109-WA0302.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20191109-WA0306.jpg" (click)="showCarousel()">
+              <img src="../../../assets/assets/images-coopeere/galeria/IMG-20180505-WA0001.jpg" (click)="showCarousel()">
+
+              <!--
+              <img src="https://www.coopeere.eco.br/wp-content/uploads/2020/10/IMG-20181203-WA0046-225x300.jpg">
+              <img src="https://www.coopeere.eco.br/wp-content/uploads/2020/10/IMG-20190722-WA0073-300x225.jpg">
+              <img src="https://www.coopeere.eco.br/wp-content/uploads/2020/10/20181018_160939-169x300.jpg">
+              <img src="https://www.coopeere.eco.br/wp-content/uploads/2020/10/IMG-20190626-WA0043-225x300.jpg">
+              <img src="https://www.coopeere.eco.br/wp-content/uploads/2020/10/20171019_145015-300x180.jpg">
+              <img src="https://www.coopeere.eco.br/wp-content/uploads/2020/10/20171122_155600-180x300.jpg">
+              <img src="https://www.coopeere.eco.br/wp-content/uploads/2020/10/IMG-20171128-WA0005-225x300.jpg">
+              <img src="https://www.coopeere.eco.br/wp-content/uploads/2020/10/IMG-20171111-WA0001-300x199.jpg">
+              <img src="https://www.coopeere.eco.br/wp-content/uploads/2020/10/20181018_170201-300x169.jpg">
+              <img src="https://www.coopeere.eco.br/wp-content/uploads/2020/10/IMG-20200716-WA1018-300x300.jpg">
+              <img src="https://www.coopeere.eco.br/wp-content/uploads/2020/10/Screenshot_20180411-085402-169x300.jpg">
+
+              -->
+            
+          </section>
+  
+
+
+          <ion-list>
+            <ion-label fill="clear" [routerLink]="['/eventos']" >Eventos</ion-label>
+            <ion-label fill="clear" [routerLink]="['/publicacoes']">Publicações</ion-label>
+            <ion-label fill="clear" [routerLink]="['/agenda']">Agenda</ion-label>
+            <ion-label fill="clear" style="color: #7b9a6e;" [routerLink]="['/galeria']" routerLinkActive="active-link">Galeria de fotos</ion-label>
+            <ion-label fill="clear" [routerLink]="['/trabalheconosco']">Trabalhe Conosco</ion-label>
+          </ion-list>
+  
+    </div>
+
+  <div>
+    <div class="botoes-superiores">
+      <ion-icon name="close" (click)="closeCarousel()"></ion-icon>
+      <ion-icon name="expand-outline" (click)="toggleFullScreen()"></ion-icon>
+      <ion-icon name="add-circle-outline" (click)="zoomIn()"></ion-icon>
+    </div>
+    <ion-slides class="imagem-lista"> 
+      <ion-slide  *ngFor="let image of images"  >
+         <img [src]="image.src" (click)="showCarousel( )" />
+      </ion-slide>
+     </ion-slides>
+    </div>
+
+
+
+
+     <div class="carousel-container" *ngIf="mostrarCarousel">
+      
+
+
+<br>
+<br>
+       <div class="carousel-controls">
+
+        <!--         
+          <ion-button fill="clear" (click)="prevSlide()">
+           <ion-icon name="arrow-back"></ion-icon>
+         </ion-button>
+         <ion-button fill="clear" (click)="nextSlide()">
+           <ion-icon name="arrow-forward"></ion-icon>
+         </ion-button>
+       
+     -->
+    </div>
+   
+  
+       <ion-slides pager="true" [options]="slideOpts" #slides >
+
+        
+
+         <ion-slide *ngFor="let image of images;let i = index"  >
+           <img [src]="image.src" class="images-galeria" />
+         </ion-slide>
+       
+       </ion-slides>
+     
+  
+
+   
+     
+  </div>
+  </ion-content>

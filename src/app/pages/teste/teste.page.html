@@ -1,0 +1,33 @@
+<!-- app.component.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Galeria de Fotos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="grid">
+    <div class="photo" *ngFor="let photo of photos" (click)="openPopup(photo)">
+      <img [src]="photo.thumbnail" alt="Foto">
+    </div>
+  </div>
+
+  <div class="popup" *ngIf="showPopup">
+    <div class="popup-overlay"></div>
+    <div class="popup-content">
+      <img [src]="currentPhoto.url" alt="Foto">
+      <ion-icon name="close" class="close-button" (click)="closePopup()"></ion-icon>
+      <ion-icon name="expand" class="fullscreen-button" (click)="toggleFullscreen()"></ion-icon>
+      <ion-icon name="add-circle" class="zoom-in-button" (click)="zoomIn()"></ion-icon>
+      <ion-icon name="remove-circle" class="zoom-out-button" (click)="zoomOut()"></ion-icon>
+      <ion-icon name="arrow-back" class="prev-button" (click)="prevPhoto()"></ion-icon>
+      <ion-icon name="arrow-forward" class="next-button" (click)="nextPhoto()"></ion-icon>
+      <div class="photo-info">
+        <span class="filename">{{ currentPhoto.filename }}</span>
+        <span class="caption">{{ currentPhoto.caption }}</span>
+      </div>
+    </div>
+  </div>
+</ion-content>
